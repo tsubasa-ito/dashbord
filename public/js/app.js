@@ -1888,8 +1888,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1900,7 +1898,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/dashboard').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/dashboard').then(function (res) {
       _this.$set(_this.$data, 'cards', res.data.cards);
     });
   },
@@ -5754,7 +5752,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "content" }, [
@@ -5763,26 +5761,38 @@ var render = function() {
       _c(
         "div",
         { staticClass: "card-row" },
-        _vm._l(_vm.cards, function(card) {
-          return _c("div", { staticClass: "card-item" }, [
+        _vm._l(_vm.cards, function(card, index) {
+          return _c("div", { key: index, staticClass: "card-item" }, [
             _c("div", { staticClass: "card-inner" }, [
-              _c("div", { staticClass: "card-title" }, [_vm._v("Card Title")]),
+              _c("div", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(card.title))
+              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-value" }, [_vm._v("100")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "card-chart" },
-                [
-                  _c(
-                    "la-cartesian",
-                    { attrs: { width: 275, height: 40, data: _vm.values } },
-                    [_c("la-area", { attrs: { animated: "", prop: "value" } })],
+              card.type === "value"
+                ? _c("div", { staticClass: "card-value" }, [
+                    _vm._v(_vm._s(card.value))
+                  ])
+                : _c(
+                    "div",
+                    { staticClass: "card-chart" },
+                    [
+                      _c(
+                        "la-cartesian",
+                        { attrs: { width: 275, height: 40, data: card.value } },
+                        [
+                          _c("la-area", {
+                            attrs: {
+                              color: card.color,
+                              animated: "",
+                              prop: "value"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
                     1
                   )
-                ],
-                1
-              )
             ])
           ])
         }),
@@ -5796,8 +5806,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "navbar" }, [_c("span", [_vm._v("Dashboad")])])
+    return _c("div", { staticClass: "navbar" }, [
+      _c("span", [_vm._v("Dashboard")])
     ])
   },
   function() {
@@ -5805,7 +5815,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "panel" }, [
-      _c("div", { staticClass: "panel-title" }, [_vm._v("Dashboad")])
+      _c("div", { staticClass: "panel-title" }, [_vm._v("Dashboard")])
     ])
   }
 ]
