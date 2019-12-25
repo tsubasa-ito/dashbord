@@ -1,7 +1,7 @@
 <template>
         <div class="container">
             <div class="navbar">
-                <span>Dashboard</span>
+                <span>Dashboard2</span>
             </div>
         <div class="content">
             <div class="panel">
